@@ -5,7 +5,7 @@
 	"main": "webpack.config.dev.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "webpack-dev-server --host 192.168.0.28 --config webpack.config.dev.js --progress --open --hot --port 6008",
+		"dev": "webpack-dev-server --host 192.168.0.29 --config webpack.config.dev.js --progress --open --hot --port 6008",
 		"build": "webpack --progress --config webpack.config.prod.js"
 	},
 	"keywords": [],

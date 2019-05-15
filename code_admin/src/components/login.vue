@@ -129,7 +129,10 @@ export default {
                         $.cookie("code_name", this.form.username, {
                             path: "/"
                         });
-                        $.cookie("userName", data.username, {
+                        $.cookie("userName", data.chat_username, {
+							path: "/"
+                        });
+                         $.cookie("show_Name", data.username, {
 							path: "/"
 						});
                        $.cookie('chat_pwd', data.chat_password, {

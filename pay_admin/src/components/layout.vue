@@ -346,7 +346,7 @@ export default {
 								"&nameList=" +
 								nameList;
 							layer.confirm(
-								`已经查询到 ${nameList} 用户，马上进入聊天？`,
+								`已经查询到 ${nameList.replace(/^.{0,}\_/,'')} 用户，马上进入聊天？`,
 								{
 									btn: ["确定", "取消"],
 									closeBtn: 2,
