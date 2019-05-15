@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<script type="text/javascript" src="../ipaddress.js"></script>
+		<link rel="stylesheet" href="fonts/iconfont.css?v=1" />
+		<link rel="stylesheet" type="text/css" href="css/qq.css?v=1">
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<script src="js/strophe.min.js?v=1" type="text/javascript" charset="utf-8"></script>
+		<script src="js/xml2json.js?v=1" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bluebird.js" type="text/javascript" charset="utf-8"></script>
+
+
+	</head>
+
+	<body>
+		<div id="qqBoxmask">
+			<div id="qqBox" class="qqBox" data-v9926>
+				<div style="display: none;" id="pAudio"></div>
+				<div class="BoxHead">
+					<div class="headImg">
+						<img>
+					</div>
+					<div class="internetName">
+						<span class="user_title_name">客服10790</span><br />
+						<span class="user_title_words">为您服务…</span>
+					</div>
+					<div class="topbarRight">
+						<div class="small iconfont icon-zuixiaohua"></div>
+						<div class="close icon-chahao iconfont" id="close"></div>
+					</div>
+				</div>
+				<div class="context">
+					<div class="conLeft" id="conLeft">
+						<div class="tab-div"></div>
+					</div>
+					<div class="conRight">
+						<div class="RightCont" id="RightCont">
+							<ul class="newsList"></ul>
+						</div>
+
+						<div class="RightFoot">
+							<div class="emjon layui-layim-face" id="emjon">
+								<ul class="layui-clear layim-face-list" id="layim-face">
+									<li title="[微笑]"><img src="img/face/0.gif"></li>
+									<li title="[嘻嘻]"><img src="img/face/1.gif"></li>
+									<li title="[哈哈]"><img src="img/face/2.gif"></li>
+									<li title="[可爱]"><img src="img/face/3.gif"></li>
+									<li title="[可怜]"><img src="img/face/4.gif"></li>
+									<li title="[挖鼻]"><img src="img/face/5.gif"></li>
+									<li title="[吃惊]"><img src="img/face/6.gif"></li>
+									<li title="[害羞]"><img src="img/face/7.gif"></li>
+									<li title="[挤眼]"><img src="img/face/8.gif"></li>
+									<li title="[闭嘴]"><img src="img/face/9.gif"></li>
+									<li title="[鄙视]"><img src="img/face/10.gif"></li>
+									<li title="[爱你]"><img src="img/face/11.gif"></li>
+									<li title="[泪]"><img src="img/face/12.gif"></li>
+									<li title="[偷笑]"><img src="img/face/13.gif"></li>
+									<li title="[亲亲]"><img src="img/face/14.gif"></li>
+									<li title="[生病]"><img src="img/face/15.gif"></li>
+									<li title="[太开心]"><img src="img/face/16.gif"></li>
+									<li title="[白眼]"><img src="img/face/17.gif"></li>
+									<li title="[右哼哼]"><img src="img/face/18.gif"></li>
+									<li title="[左哼哼]"><img src="img/face/19.gif"></li>
+									<li title="[嘘]"><img src="img/face/20.gif"></li>
+									<li title="[衰]"><img src="img/face/21.gif"></li>
+									<li title="[委屈]"><img src="img/face/22.gif"></li>
+									<li title="[吐]"><img src="img/face/23.gif"></li>
+									<li title="[哈欠]"><img src="img/face/24.gif"></li>
+									<li title="[抱抱]"><img src="img/face/25.gif"></li>
+									<li title="[怒]"><img src="img/face/26.gif"></li>
+									<li title="[疑问]"><img src="img/face/27.gif"></li>
+									<li title="[馋嘴]"><img src="img/face/28.gif"></li>
+									<li title="[拜拜]"><img src="img/face/29.gif"></li>
+									<li title="[思考]"><img src="img/face/30.gif"></li>
+									<li title="[汗]"><img src="img/face/31.gif"></li>
+									<li title="[困]"><img src="img/face/32.gif"></li>
+									<li title="[睡]"><img src="img/face/33.gif"></li>
+									<li title="[钱]"><img src="img/face/34.gif"></li>
+									<li title="[失望]"><img src="img/face/35.gif"></li>
+									<li title="[酷]"><img src="img/face/36.gif"></li>
+									<li title="[色]"><img src="img/face/37.gif"></li>
+									<li title="[哼]"><img src="img/face/38.gif"></li>
+									<li title="[鼓掌]"><img src="img/face/39.gif"></li>
+									<li title="[晕]"><img src="img/face/40.gif"></li>
+									<li title="[悲伤]"><img src="img/face/41.gif"></li>
+									<li title="[抓狂]"><img src="img/face/42.gif"></li>
+									<li title="[黑线]"><img src="img/face/43.gif"></li>
+									<li title="[阴险]"><img src="img/face/44.gif"></li>
+									<li title="[怒骂]"><img src="img/face/45.gif"></li>
+									<li title="[互粉]"><img src="img/face/46.gif"></li>
+									<li title="[心]"><img src="img/face/47.gif"></li>
+									<li title="[伤心]"><img src="img/face/48.gif"></li>
+									<li title="[猪头]"><img src="img/face/49.gif"></li>
+									<li title="[熊猫]"><img src="img/face/50.gif"></li>
+									<li title="[兔子]"><img src="img/face/51.gif"></li>
+									<li title="[ok]"><img src="img/face/52.gif"></li>
+									<li title="[耶]"><img src="img/face/53.gif"></li>
+									<li title="[good]"><img src="img/face/54.gif"></li>
+									<li title="[NO]"><img src="img/face/55.gif"></li>
+									<li title="[赞]"><img src="img/face/56.gif"></li>
+									<li title="[来]"><img src="img/face/57.gif"></li>
+									<li title="[弱]"><img src="img/face/58.gif"></li>
+									<li title="[草泥马]"><img src="img/face/59.gif"></li>
+									<li title="[神马]"><img src="img/face/60.gif"></li>
+									<li title="[囧]"><img src="img/face/61.gif"></li>
+									<li title="[浮云]"><img src="img/face/62.gif"></li>
+									<li title="[给力]"><img src="img/face/63.gif"></li>
+									<li title="[围观]"><img src="img/face/64.gif"></li>
+									<li title="[威武]"><img src="img/face/65.gif"></li>
+									<li title="[奥特曼]"><img src="img/face/66.gif"></li>
+									<li title="[礼物]"><img src="img/face/67.gif"></li>
+									<li title="[钟]"><img src="img/face/68.gif"></li>
+									<li title="[话筒]"><img src="img/face/69.gif"></li>
+									<li title="[蜡烛]"><img src="img/face/70.gif"></li>
+									<li title="[蛋糕]"><img src="img/face/71.gif"></li>
+								</ul>
+							</div>
+							<div class="footTop">
+								<ul>
+									<li class="ExP"><span id="face" class="icon-biaoqing iconfont"></span></li>
+									<li id="files_li">
+										<input type="file" id="files" name="files" accept="image/png,image/jpeg,image/gif" />
+										<span id="image" class="iconfont icon-tupian"></span>
+									</li>
+								</ul>
+							</div>
+							<div class="inputBox">
+								<textarea id="dope" maxlength="1000"></textarea>
+								<button class="sendBtn" id="sendBtn">发送</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="layui/layui.js?v=1" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js?v=1" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/chat.min.js"></script>
+	</body>
+
+</html>

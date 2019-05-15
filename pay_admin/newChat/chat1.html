@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>新版客服</title>
+		<link rel="stylesheet" href="../chatService/css/menu.css">
+		<script src="../ipaddress.js" type="text/javascript" charset="utf-8"></script>
+		<link href="../chatService/layim-v3.7.5/dist/css/layui.css" rel="stylesheet" />
+		<script src="../chatService/js/jquery-1.8.2.js"></script>
+		<script src="../chatService/layim-v3.7.5/dist/layui.js"></script>
+		<script src="chat1.js"></script>
+		<script src="strophe.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#onlineBox {
+				float: left;
+				margin: 10px;
+			}
+			
+			body {
+				position: relative;
+			}
+			
+			body .layui-layim-remark,
+			body .layui-layim-status {
+				display: none;
+			}
+			
+			body .layui-layim-info {
+				height: 60px;
+			}
+			
+			#ChatSystemName {
+				display: block;
+				padding-bottom: 10px;
+				font-size: 20px;
+			}
+			
+			.layim-chat-system,
+			#layui-layim-close {
+				display: none;
+			}
+			
+			.layim-chat-other span cite {
+				display: none;
+			}
+			
+			.layim-chat-status {
+				display: none;
+			}
+			
+			.layim-chat-list li span.Red_dot {
+				display: none;
+				height: 10px;
+				width: 0px;
+				background-color: #f00;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			window.name = "window2";
+			var isnewChat = true;
+
+			var avatarList = window.top.$Res.getQueryString('avatar').split(','),
+				idList = window.top.$Res.getQueryString('uerId').split(','),
+				nameList = window.top.$Res.getQueryString('nameList').split(',');
+			var socket = null;
+			var menu;
+			var hhyang_brief = false,
+				hhyang_big = false,
+				serviceId = 0,
+				startWebsocket1 = false,
+				reoadCount = 0,
+				html = "",
+				index = -1,
+				layerIndex = null,
+				setTime = null,
+				stop = null,
+				newDate= (+new Date()),
+				isfirst = 1;
+
+			function init() {
+				layui.extend({
+					menu: 'js/menu'
+				});
+				layui.use('layim', function(layim) {
+					layim.config({
+						init: {
+							mine: {
+								alias: $Res.getCookieValue('userName'),
+								avatar: 7,
+								id: $Res.getCookieValue('chat-user'),
+								status: "0",
+								username: $Res.getCookieValue('chat-user')
+							},
+							friend: [],
+							group: []
+						},
+						//chatLog: $Res.httpRoot + '/layim-v3.7.5/dist/chatlog.html',
+						brief: false,
+						title: '聊天系统',
+						//可同时配置多个
+						tool: false,
+						min: true,
+						uploadImage: {
+							url: "" + window.q_request_url + "Login/upload_images"
+						},
+						move: false,
+						notice: true,
+						isAudio: false, //开启聊天工具栏音频
+						isVideo: false,
+						copyright: true,
+						isgroup: false
+					});
+					layim.on('ready', function(options) {
+						if($('#ChatSystemName').length === 0) {
+							$('.layui-layim-info').prepend('<div id="ChatSystemName">聊天系统</div>')
+						}
+					});
+
+					function getCookieValue(name) {
+						var strCookie = document.cookie;
+						var arrCookie = strCookie.split(";");
+						for(var i = 0; i < arrCookie.length; i++) {
+							var c = arrCookie[i].split("=");
+							if(c[0].replace(/(^\s*)|(\s*$)/g, "") == name) {
+								return c[1];
+							}
+						}
+						return "";
+					}
+
+					function onConnect(status) {
+						if(status == Strophe.Status.ERROR) {
+							console.log('出现错误')
+						} else if(status == Strophe.Status.CONNECTING) { //1
+							console.log('正在链接')
+						} else if(status == Strophe.Status.CONNFAIL) { //2
+							console.log('连接尝试失败')
+						} else if(status == Strophe.Status.DISCONNECTING) { //7
+							console.log('当前正在终止连接')
+						} else if(status == Strophe.Status.DISCONNECTED) { //6
+							console.log('连接已终止')
+							startWebsocket1 = false;
+							startWebsocket();
+						} else if(status == Strophe.Status.AUTHFAIL) {
+							console.log('身份验证失败');
+							layer.msg(`身份验证失败`, {
+								icon: 2,
+								time: 1500
+							});
+						} else if(status == Strophe.Status.CONNECTED) { //5
+							startWebsocket1 = true;
+							layer.close(layerIndex)
+							layerIndex = null;
+							reoadCount = 0;
+							socket.addHandler(onMessage, null, 'message', null, null, null);
+							socket.send($pres().tree());
+						}
+					}
+
+					function onMessage(msg) {
+						var elems = msg.getElementsByTagName('body');
+						if(elems.length != 0) {
+							var from = msg.getAttribute('from').split('@')[0];
+							var to = msg.getAttribute('to').split('@')[0];
+							var from_Avatar = elems[0].getAttribute('from_Avatar');
+							var to_Avatar = elems[0].getAttribute('to_Avatar');
+							var toUserId = elems[0].getAttribute('toUserId');
+							var msgId = elems[0].getAttribute('msgId');
+
+							var msgServer = {
+								username: from,
+								avatar: from_Avatar,
+								id: toUserId,
+								type: 'friend',
+								content: elems[0].innerHTML,
+								mine: false,
+								timestamp: +new Date(),
+								msgId
+							}
+							return layim.getMessage(msgServer, true)
+						}
+						return true;
+					}
+
+					function startWebsocket() {
+						socket = new Strophe.Connection(window.BOSH_SERVICE);
+						socket.connect(getCookieValue('chat-user') + window.suffixPath + '/web' + newDate, getCookieValue('chat-pwd'),
+							onConnect);
+						if(isfirst == 1) {
+							//监听发送消息事件
+							layim.on('sendMessage', function(res) {
+								var msg = $msg({
+									to: res.to.name + window.suffixPath,
+									from: res.mine.username + window.suffixPath,
+									type: 'chat'
+								}).c("body", {
+									'from_Avatar': res.mine.avatar,
+									'to_Avatar': res.to.avatar,
+									'userTemlteEl': 'hhyangUser' + res.mine.id,
+									'toUserId': res.to.id,
+									'msgId':+new Date()
+								}, res.mine.content)
+								socket.send(msg.tree());
+							});
+							
+							for(var j = 0; j < idList.length; j++) {
+								layim.chat({
+									name: nameList[j],
+									avatar: avatarList[j],
+									type: 'friend',
+									id: idList[j] //好友id
+								})
+
+							}
+						}
+						window.onbeforeunload = function() {
+							socket.close();
+						}
+						isfirst++;
+					}
+
+					startWebsocket();
+
+				});
+			}
+			// var ajaxPath = location.protocol + '//' + location.host + location.pathname + window.location_url;
+			// ajaxPath = ajaxPath.replace(/newChat\/chat1.html/g, '');
+			//var ajaxPath="http://192.168.0.106:9020/houtai/api/";
+			$.ajax({
+				url: "" + window.location_url + "Admin/service_list",
+				data: {
+					'token': $Res.getCookieValue('pay_token'),
+				},
+				dataType: 'json',
+				type: 'post',
+				success: function(data) {
+					var abData = [];
+					for(var i = 0; i < data.dataList.length; i++) {
+						let item2 = data.dataList[i].subordinate;
+						if(item2.length > 0) {
+							abData.push(data.dataList[i])
+						}
+					}
+					html += '<div class="layui-collapse">'
+					for(var i = 0; i < abData.length; i++) {
+						html += '<div class="layui-colla-item"><h2 class="layui-colla-title">' + abData[i].content + '</h2>';
+						for(var j = 0; j < abData[i].subordinate.length; j++) {
+							var item = abData[i].subordinate[j];
+							html += '<div class="layui-colla-content">';
+							html += '<div class="layui-form-item  form_item_list">';
+							html += '<label class="layui-form-label chart_sort_nums">' + item.sort + '</label>';
+							html += '<label class="layui-form-label chart_sort_content" style="width: inherit;" title="' + item.content + '">' + item.content + '</label>'
+							html += '</div></div>'
+						}
+						html += '</div>'
+					}
+					html += '</div>'
+
+					init();
+				}
+			});
+		</script>
+
+	</body>
+
+</html>
