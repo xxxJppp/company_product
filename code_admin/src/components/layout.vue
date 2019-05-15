@@ -30,14 +30,14 @@
 						<li class="layui-nav-item" style="margin: 0 15px;">
                             <span>
 								<i class="iconfont icon-huabanfuben" style="vertical-align: top;"></i>
-								团队总人数：{{ $store.getters.userInfo.team_number }} 人
+								团队全部总人数：{{ $store.getters.userInfo.team_number }} 人
 							</span>
                         </li>
 
 						<li class="layui-nav-item" style="margin: 0 15px;">
                             <span>
 								<i class="layui-icon layui-icon-rmb"></i>
-								团队可用额度：{{ $store.getters.userInfo.gather_amount_limit }} 元
+								我的利润钱包：{{ $store.getters.userInfo.wallet }} 元
 							</span>
                         </li>
 

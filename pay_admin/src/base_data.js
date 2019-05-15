@@ -167,12 +167,12 @@ class base_data {
 				1: '取消店员通知',
 			},
 			wechat_status: {
-				0: '未处理',
-				1: '已处理'
+				0: '正常',
+				1: '禁用'
 			},
 			wechat_status_color: {
-				0: 'red',
-				1: 'green'
+				0: 'green',
+				1: 'red'
 			},
 			bill_change: {
 				0: '未知',

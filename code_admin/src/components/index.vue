@@ -1,11 +1,11 @@
 <template>
     <div id="index_container">
         <el-row :gutter="15">
-            <el-col :span="6">
+            <el-col :span="8">
                 <div class="module">
                     <div class="module-title">
                         <span class="vertical-lines"></span>
-                        <span class="title-text">今日数据统计</span>
+                        <span class="title-text">我的团数据统计</span>
                     </div>
                     <div class="module-content">
                         <ul class="module-content-list">
@@ -43,15 +43,15 @@
                     </div>
                 </div>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
                 <div class="module">
                     <div class="module-title">
                         <span class="vertical-lines"></span>
-                        <span class="title-text">今日数据统计</span>
+                        <span class="title-text">下级团数据统计</span>
                     </div>
                     <div class="module-content">
                         <ul class="module-content-list">
-                            <li>
+                            <!-- <li>
                                 <div class="data1">
                                     <p>我的钱包</p>
                                     <h1>{{ pandectData.wallet }}</h1>
@@ -60,67 +60,67 @@
                                     <p>与昨日数量比</p>
                                     <h1>5%</h1>
                                 </div>
+                            </li> -->
+                            <li>
+                                <div>
+                                    <p>今日总订单</p>
+                                    <h1>{{ pandectData.today_order_money }}</h1>
+                                </div>
+                                <div>
+                                    <p>昨日总订单</p>
+                                    <h1>{{ pandectData.yesterday_order_money }}</h1>
+                                </div>
                             </li>
                             <li>
                                 <div>
-                                    <p>直属团长</p>
-                                    <h1>{{ pandectData.leader }}个</h1>
+                                    <p>今日总单数</p>
+                                    <h1>{{ pandectData.today_order_sum }}</h1>
                                 </div>
                                 <div>
-                                    <p>直属子团长</p>
-                                    <h1>{{ pandectData.secondary }}个</h1>
+                                    <p>昨日总单数</p>
+                                    <h1>{{ pandectData.yesterday_order_sum }}</h1>
                                 </div>
                             </li>
                             <li>
-                                <div class="data1">
-                                    <p>今日下单商户数</p>
-                                    <h1>2</h1>
+                                <div>
+                                    <p>今日利润</p>
+                                    <h1>{{ pandectData.today_order_profit }}</h1>
                                 </div>
-                                <div class="data2">
-                                    <p>与昨日数量相比</p>
-                                    <h1>5%</h1>
+                                <div>
+                                    <p>昨日利润</p>
+                                    <h1>{{ pandectData.yesterday_order_profit }}</h1>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="8">
                 <div class="module">
                     <div class="module-title">
                         <span class="vertical-lines"></span>
-                        <span class="title-text">出单时段统计</span>
+                        <span class="title-text">团长可用额度</span>
                     </div>
                     <div class="module-content">
                         <ul class="module-content-list">
                             <li>
                                 <div class="data1">
-                                    <p>今日订单总金额</p>
-                                    <h1>2</h1>
+                                    <p>团长：sky123</p>
+                                    <h1>￥1000.00</h1>
                                 </div>
-                                <div class="data2">
-                                    <p>与昨日金额比</p>
-                                    <h1>5%</h1>
+                                <div class="data1">
+                                    <p>团长：sky123</p>
+                                    <h1>￥1000.00</h1>
                                 </div>
                             </li>
                             <li>
                                 <div class="data1">
-                                    <p>今日下单商户数</p>
-                                    <h1>2</h1>
+                                    <p>团长：sky123</p>
+                                    <h1>￥1000.00</h1>
                                 </div>
-                                <div class="data2">
-                                    <p>与昨日数量相比</p>
-                                    <h1>5%</h1>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="data1">
-                                    <p>平台拥有总商户数</p>
-                                    <h1>2564</h1>
-                                </div>
-                                <div class="data2">
-                                    <p>昨日总商户数</p>
-                                    <h1>2500</h1>
+                                <div class="data1" style="visibility: hidden">
+                                    <p>团长：sky123</p>
+                                    <h1>￥1000.00</h1>
                                 </div>
                             </li>
                         </ul>
