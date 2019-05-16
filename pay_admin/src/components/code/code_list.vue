@@ -98,7 +98,7 @@
 							<i class="_info" @click="selectOrder(item.cp_account)">{{ item.cp_account }}</i>
 						</td>
 						<td>{{ item.cp_nickname }}</td>
-						<td class="f_bold" :class="item.allot ? 'green' : 'red'">{{ item.allot ? '已分配' : '未分配' }}</td>
+						<td class="f_bold" :class="$cm_d.tg['clerk_status_c'][item.wx_assis_status]">{{ $cm_d.tg['clerk_status'][item.wx_assis_status] }}</td>
 						<td>{{ item.cp_top_account }}</td>
 						<td>{{ item.wx_rebate }}</td>
 						<!-- <td>{{ item.ali_rebate }}</td> -->
@@ -126,6 +126,9 @@
 							<span v-else class="close_btn cp " @click="disabled(item.id)"><i class="el-icon-close"></i>禁用</span>
 							
 							<span class="common_btn cp ml5" @click="limit(item)"><i class="am-icon-cny"></i> 限制额度</span>
+
+							<span v-if="item.wx_assis_status === 0" class="open_btn cp auth_allo ml5" @click="setClerk(item.id)"><i class="el-icon-s-custom"></i>设置店员</span>
+							<span v-else class="close_btn cp auth_allo ml5" @click="cancelClerk(item.id)"><i class="el-icon-s-custom"></i>取消分配</span>
 
 							<span class="editor_btn cp auth_eduit ml5" @click="edit(item)"><i class="el-icon-edit-outline"></i>编辑</span>
 						</td>
@@ -1114,6 +1117,68 @@
 					})
 				})
 			},
+
+			/**
+			 * 设置店员操作
+			 */
+			setClerk(id) {
+				let get_clerk = this.$axios.post('Assis/get_assis_nickname');
+				layer.open({
+					type: 1,
+					area: ['440px', '160px'],
+					id: 'add_code',
+					btn: ['确认'],
+					title: '设置店员操作',
+					content: `
+						<div class="__layer set-clerk">
+							<div class="item mb0">
+								<span class="__layer_title">微信店员：</span>
+								<select class="__layer_input" id="wechat-clerk"></select>
+								<span class="__layer_tips">请选择微信店员</span>
+							</div>
+						</div>
+					`,
+					success: async () => {
+						let clerk_data = await get_clerk;
+						const SELECTARR = clerk_data.map(item => (`<option value="${item.id}">${item.wx_nickname}</option>`))
+						$('.set-clerk #wechat-clerk').html(SELECTARR.join(''));
+					},
+					yes: (layIndex) => {
+						const WECHATID = $('.set-clerk #wechat-clerk').val();
+						this.$axios.post('Assis/set_assis', {
+							wx_assis_id: WECHATID,
+							cp_id: id,
+							prompt: true,
+						}).then(data => {
+							if (!data) {
+								setTimeout(() => {
+									layer.close(layIndex);
+									this.request_data();
+								}, 1500)
+							}
+						})
+					}
+				})
+			},
+
+			/**
+			 * 取消分配
+			 */
+			cancelClerk(id) {
+				layer.confirm('是否要取消选中码户所绑定的微信店员？', {title: '启用', icon: 7}, layIndex => {
+					this.$axios.post('Assis/cancel_assis', {
+						cp_id: id,
+					}).then(data => {
+						if (!data) {
+							setTimeout(() => {
+								layer.close(layIndex);
+								this.request_data();
+							}, 1500)
+						}
+					})
+				})
+			},
+
 
 			/**
 			 * 显示时间

@@ -53,6 +53,30 @@ class base_methods {
 		})
 	}
 
+
+	/**
+	 * 富文本编辑弹框
+	 */
+	ueditor({callBack, title}) {
+		layer.open({
+			type: 2,
+			title,
+			shade: [0],
+			area: ['1100px', '680px'],
+			time: false, //2秒后自动关闭
+			anim: 2,
+			content: [`${window.location.pathname}#/ueditor`, 'no'], //iframe的url，no代表不显示滚动条
+			success(__layer, layerIndex) {
+				window.__closeUeditor = () => {
+					setTimeout(() => {
+						layer.close(layerIndex);
+						if (typeof callBack === 'function') callBack();
+					}, 1500)
+				}
+			},
+		});	
+	}
+
 	/**
 	 * 生成随机码
 	 * a-z|A-z|0-9

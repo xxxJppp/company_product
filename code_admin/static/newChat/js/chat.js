@@ -451,14 +451,14 @@ layui.use('layer', () => {
 		uploadImage(FormData) {
 			$.ajax({
 				type: "post",
-				url: `${window.Request_url}Login/upload_images`,
+				url: `${window.location_url}Login/upload_images`,
 				async: true,
 				processData: false,
 				contentType: false,
 				data: FormData,
 				success: (data) => {
 					let ResourcePath = window.top.getContextPath();
-					this.msgControlCenter(undefined, 'me', `img[${ResourcePath}${data.dataList}]`, false, $('.bg').attr('data-class'), true);
+					this.msgControlCenter(undefined, 'me', `img[${Request_url}${data.dataList}]`, false, $('.bg').attr('data-class'), true);
 					layer.closeAll();
 				},
 				error: (data) => {
@@ -609,7 +609,7 @@ layui.use('layer', () => {
 				isTourist = false;
 				LoginXmpp({
 					username: Chat.getCookieValue('userName'),
-					name: Chat.getCookieValue('userName'),
+					name: Chat.getCookieValue('show_Name'),
 					plainpassword: Chat.getCookieValue('chat_pwd'),
 					userId: Chat.getCookieValue('userId'),
 					avatar: Chat.getCookieValue('avatar')
@@ -633,7 +633,7 @@ layui.use('layer', () => {
 		return new Promise((resolve) => {
 			$.ajax({
 				type: "post",
-				url: `${window.Request_url}Login/visitor`,
+				url: `${window.location_url}Login/visitor`,
 				async: true,
 				success: (data) => {
 					data.dataList.avatar = data.dataList.picture;

@@ -207,6 +207,32 @@ class base_data {
 				0: '手动',
 				1: '自动',
 			},
+			clerk_status: {
+				0: '未分配',
+				1: '等待分配',
+				2: '已分配',
+			},
+			clerk_status_c: {
+				0: 'red',
+				1: '',
+				2: 'green',
+			},
+			billchange_status: {
+				0: '正常',
+				1: '隐藏',
+			},
+			billchange_status_c: {
+				0: 'green',
+				1: 'red',
+			},
+			notice_status: {
+				0: '正常',
+				1: '隐藏',
+			},
+			notice_status_c: {
+				0: 'green',
+				1: 'red',
+			},
 		}
 	}
 }

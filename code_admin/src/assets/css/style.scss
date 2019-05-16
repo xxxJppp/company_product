@@ -365,6 +365,7 @@ a {
     }
 }
 
+
 // 消息提示层
 .msg_layer {
     padding: 10px;
@@ -687,6 +688,7 @@ a {
             line-height: 50px;
 
             a {
+                padding: 0;
                 color: #616161;
             }
         }
@@ -706,6 +708,11 @@ a {
         .el-submenu .el-menu-item {
             padding-left: 54px !important;
             font-size: 12px;
+            
+        }
+        .el-menu-item, .el-submenu__title {
+            height: 48px;
+            line-height: 48px;
         }
 
         .userMsg {
@@ -905,6 +912,11 @@ a {
                             &:hover {
                                 background: none;
                             }
+
+                            p {
+                                margin-top: 20px;
+                                font-size: 20px;
+                            }
                         }
                     }
 
@@ -969,15 +981,33 @@ a {
 #index_container {
     .module {
         width: 100%;
-        height: 340px;
-        padding: 20px;
+        height: 230px;
+        padding: 10px 20px;
         box-sizing: border-box;
         background-color: #FFF;
         border-radius: 5px;
 
         &.special {
             margin-top: 20px;
-            height: 330px;
+            height: 285px;
+        }
+
+        &.one-line {
+            height: 150px;
+            overflow-y: hidden;
+            overflow-x: auto;
+
+            .module-content-list {
+                li {
+                    width: auto;
+                    height: 92px;
+                    overflow: auto;
+
+                    > div {
+                        flex: 0 0 180px !important;
+                    }
+                }
+            }
         }
 
         .module-title {
@@ -1007,6 +1037,11 @@ a {
             width: 100%;
             padding-top: 20px;
 
+            &.scroll {
+                overflow-y: hidden;
+                overflow-x: auto;
+            }
+
             .module-content-list {
                 li {
                     display: flex;
@@ -1020,20 +1055,23 @@ a {
                         height: 80px;
                         overflow: hidden;
                     }
+                    &:last-child {
+                        border-bottom: none;
+                    }
 
                     >div {
                         flex: 1 1 auto;
                         text-align: center;
                         padding: 10px 0;
 
-                        p {
+                        >p {
                             font-size: 12px;
                             line-height: 30px;
                             color: #a5b6c8;
                         }
 
-                        h1 {
-                            font-size: 20px;
+                        >h1 {
+                            font-size: 18px;
                             line-height: 30px;
                             color: #202133;
                         }
@@ -1064,7 +1102,7 @@ a {
         }
 
         .image {
-            height: 200px;
+            height: 170px;
         }
 
         .clearfix:before,
@@ -1449,5 +1487,12 @@ a {
         background-image: url(../images/msg.png?v=1);
         top: 10px;
         left: 10px;
+    }
+}
+
+#handle_help {
+    .el-tabs__content {
+        min-height: 600px;
+        padding: 15px;
     }
 }

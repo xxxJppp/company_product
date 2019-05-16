@@ -59,7 +59,7 @@
 								<th>上级账号</th>
 								<th>点位</th>
 								<th>可用额度</th>
-								<th>限制额度</th>
+								<!-- <th>限制额度</th> -->
 								<th>创建时间</th>
 								<th>二维码地址</th>
 								<th>店员ID</th>
@@ -77,7 +77,7 @@
 								<td v-text="item.wx_rebate"></td>
 								<!-- <td v-text="item.ali_rebate"></td> -->
 								<td class="red f_bold" v-text="item.gather_amount_limit"></td>
-								<td class="red" v-text="item.gal_personal"></td>
+								<!-- <td class="red" v-text="item.gal_personal"></td> -->
 								<td v-text="item.create_time"></td>
 								<td>
 									<span
@@ -150,9 +150,9 @@
 										暂停
 									</button>
 
-									<button v-if="item.is_alter" class="layui-btn layui-btn-xs" @click="limit(item)">
+									<!-- <button v-if="item.is_alter" class="layui-btn layui-btn-xs" @click="limit(item)">
 										限额
-									</button>
+									</button> -->
 									
 
 									<button v-if="item.is_alter && !item.oneself" class="layui-btn layui-btn-xs" @click="editAccount(item)">
@@ -166,7 +166,7 @@
 							<tr class="no_data">
 								<td colspan="99">
 									<img src="../../assets/images/icon/nodate.png">
-									<p>您暂时没有团队成员！</p>
+									<p>您暂时没有添加组员！</p>
 								</td>
 							</tr>
 						</tbody>

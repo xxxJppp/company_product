@@ -296,7 +296,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 	var elemChatTpl = ['<div class="layim-chat layim-chat-{{d.data.type}}{{d.first ? " layui-show" : ""}}">',
 		'<div class="layui-unselect layim-chat-title">', '<div class="layim-chat-other">',
 		'<img class="layim-{{ d.data.type }}{{ d.data.id }}" src="' + window.top.$Res.httpRoot +
-		'/images/{{ d.data.avatar }}.png"><span class="layim-chat-username" layim-event="{{ d.data.type==="group" ? \"groupMembers\" : \"\" }}">{{ d.data.alias||d.data.name||"佚名" }} {{d.data.temporary ? "<cite>临时会话</cite>" : ""}} {{# if(d.data.type==="group"){ }} <em class="layim-chat-members"></em><i class="layui-icon">&#xe61a;</i> {{# } }}</span>',
+		'/images/{{ d.data.avatar }}.png"><span class="layim-chat-username" layim-event="{{ d.data.type==="group" ? \"groupMembers\" : \"\" }}">{{ d.data.show_name||d.data.alias||d.data.name||"佚名" }} {{d.data.temporary ? "<cite>临时会话</cite>" : ""}} {{# if(d.data.type==="group"){ }} <em class="layim-chat-members"></em><i class="layui-icon">&#xe61a;</i> {{# } }}</span>',
 		'<p class="layim-chat-status"></p>', '</div>', '</div>', '<div class="layim-chat-main">', '<ul></ul>', '</div>',
 		'<div class="layim-chat-footer">',
 		'<div class="layui-unselect layim-chat-tool" data-json="{{encodeURIComponent(JSON.stringify(d.data))}}">',
@@ -339,15 +339,15 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 	//聊天内容列表模版
 	var elemChatMain = ['<li {{ d.mine ? "class=layim-chat-mine" : "" }} {{# if(d.cid){ }}data-cid="{{d.cid}}"{{# } }}>',
 		'<div class="layim-chat-user"><img src="' + window.top.$Res.httpRoot + '/images/{{ d.avatar }}.png"><cite>',
-		'{{# if(d.mine){ }}', '<i>{{ layui.data.date(d.timestamp) }}</i>{{ d.alias||d.username||"佚名" }}',
-		'{{# } else { }}', '{{ d.alias||d.username||"佚名" }}<i>{{ layui.data.date(d.timestamp) }}</i>', '{{# } }}',
+		'{{# if(d.mine){ }}', '<i>{{ layui.data.date(d.timestamp) }}</i>{{ d.show_name||d.alias||d.username||"佚名" }}',
+		'{{# } else { }}', '{{d.show_name|| d.alias||d.username||"佚名" }}<i>{{ layui.data.date(d.timestamp) }}</i>', '{{# } }}',
 		'</cite></div>', '<div class="layim-chat-text">{{ layui.data.content(d.content||"&nbsp") }}</div>', '</li>'
 	].join('');
 
 	var elemChatList =
 		'<li class="layim-{{ d.data.type }}{{ d.data.id }} layim-chatlist-{{ d.data.type }}{{ d.data.id }} layim-this" layim-event="tabChat"><img src="' +
 		window.top.$Res.httpRoot +
-		'/images/{{ d.data.avatar }}.png"><span>{{ d.data.alias||d.data.name||"佚名" }}</span>{{# if(!d.base.brief){ }} <span class="Red_dot"></span>   <i class="layui-icon" layim-event="closeChat">&#x1007;</i>{{# } }} </li>';
+		'/images/{{ d.data.avatar }}.png"><span>{{ d.data.show_name||d.data.alias||d.data.name||"佚名" }}</span>{{# if(!d.base.brief){ }} <span class="Red_dot"></span>   <i class="layui-icon" layim-event="closeChat">&#x1007;</i>{{# } }} </li>';
 
 	//补齐数位
 	var digit = function(num) {
@@ -630,7 +630,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 					base: cache.base,
 					local: cache.local
 				};
-
+				render.data.show_name=render.data.name.replace(/^.{0,}\_/,'');
 			if(!data.id) {
 				return layer.msg('非法用户');
 			}
@@ -659,6 +659,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 					chatBox.css('margin-left', '200px');
 				}
 
+				console.log(render)
 				//打开的是非当前聊天面板，则新增面板
 				if(!listThat[0]) {
 					list.append(laytpl(elemChatList).render(render));
@@ -693,7 +694,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 						layero.find('.layui-layer-max').click();
 					})
 					layero.find('.layim-tool-log').remove();
-					layero.find('.layim-chat-username').text(data.name)
+					layero.find('.layim-chat-username').text(data.name.replace(/^.{0,}\_/,''));
 					layero.find('.layim-chat-username cite').css('display', 'none');
 					layero.find('.layim-chat-status').html('<span style="color:#FF5722;">在线</span>')
 					layero.find('.layim-chat-main').css({
@@ -1129,6 +1130,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 			if(data.content.length > maxLength) {
 				return layer.msg('内容最长不能超过' + maxLength + '个字符')
 			}
+			data.show_name=data.username.replace(/^.{0,}\_/,'');
 			ul.append(laytpl(elemChatMain).render(data));
 
 			var param = {
@@ -1286,6 +1288,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 					ul.append('<li class="layim-chat-system"><span>' + data.content + '</span></li>');
 				}
 			} else if(data.content.replace(/\s/g, '') !== '') {
+				data.show_name=data.username.replace(/^.{0,}\_/,'');
 				ul.append(laytpl(elemChatMain).render(data));
 			}
 
@@ -1355,6 +1358,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 			chatlog = local.chatlog || {},
 			ul = thatChat.elem.find('.layim-chat-main ul');
 		layui.each(chatlog[thatChat.data.type + thatChat.data.id], function(index, item) {
+			item.show_name=item.username.replace(/^.{0,}\_/,'');
 			ul.append(laytpl(elemChatMain).render(item));
 		});
 		chatListMore();

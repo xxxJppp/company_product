@@ -92,6 +92,7 @@ import add_admin from './components/layer/add_admin.vue'					// 添加管理员
 import allot from './components/layer/allot.vue'							// 成员操作
 import eduit_authority from './components/layer/eduit_authority.vue'		// 编辑权限
 import select_sup from './components/layer/select_sup.vue'					// 选择上级
+import ueditor from './components/layer/ueditor.vue'						// ueditor 富文本编辑器
 
 
 const routes = [
@@ -104,7 +105,8 @@ const routes = [
 	{ path: '/add_admin', component: add_admin },	// 添加管理员
 	{ path: '/eduit_authority', component: eduit_authority },// 编辑权限
 	{ path: '/allot', component: allot },			// 成员操作
-	{ path: '/select_sup', component: select_sup },			// 成员操作
+	{ path: '/select_sup', component: select_sup },	// 选择上级
+	{ path: '/ueditor', component: ueditor },		// ueditor 富文本编辑器
 ]
 
 
