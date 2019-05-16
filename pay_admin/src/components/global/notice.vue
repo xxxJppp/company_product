@@ -9,9 +9,9 @@
         <form class="am-form am-g">
             <!-- 头部 -->
             <div class="common_title clearfix">
-				<!-- 新增商户 -->
+				<!-- 新增公告 -->
 				<div class="add_member fl" style="margin-right: 20px;">
-					<el-button @click="add" class="auth_add" type="primary" icon="el-icon-plus" size="small">新增</el-button>
+					<el-button @click="add" class="auth_add" type="primary" icon="el-icon-plus" size="small">新增公告</el-button>
 				</div>
 
                 <!-- 时间 -->
@@ -28,11 +28,11 @@
                     ></el-date-picker>
                 </div>
 
-                <!-- 支付状态 -->
+                <!-- 所属类型 -->
                 <div class="lottery_status fl ml10">
                     <el-form :inline="true" size="small" :model="form">
                         <el-form-item>
-                            <el-select v-model="form.belong_type" placeholder="所属类型">
+                            <el-select @change="select_data" v-model="form.belong_type" placeholder="所属类型">
                                 <el-option label="码户" value="0"></el-option>
                                 <el-option label="商户" value="1"></el-option>
                             </el-select>
@@ -58,6 +58,7 @@
                         <th>ID</th>
                         <th>标题</th>
                         <th>添加时间</th>
+                        <th>状态</th>
                         <th class="control_T">操作</th>
                     </tr>
                 </thead>
@@ -77,6 +78,8 @@
                             <span @click="noticeLayer(item)" class="_info">{{ item.title }}</span>
                         </td>
                         <td>{{ item.create_time }}</td>
+
+                        <td :class="$cm_d.tg['notice_status_c'][item.status]">{{ $cm_d.tg['notice_status'][item.status] }}</td>
                         <td class="control_C">
 							<span class="auth_eduit editor_btn cp ml5" @click="edit(item)"><i class="el-icon-edit-outline"></i> 编辑</span>
 							<span class="auth_del remove_btn cp ml5" @click="remove([item.id])"><i class="el-icon-delete"></i> 删除</span>
@@ -241,7 +244,6 @@ export default {
         request_data() {
             this.$cm_m.toggle_time(this);
             this.$axios.post("Notice/notice_list", this.form).then(res => {
-                console.log(res);
                 this.dataList = res;
                 this.$cm_m.auth_btn();
             });
@@ -274,7 +276,7 @@ export default {
 		 * 添加公告
 		 */
 		add() {
-			layer.open({
+			/* layer.open({
 				type: 1,
 				title: '添加公告',	
 				area: ['780px', '430px'],
@@ -321,7 +323,9 @@ export default {
 						}
 					})
 				}
-			})
+            }) */
+            window.__acticle_data = {flag: '1'};
+			this.$cm_m.ueditor({callBack: this.request_data, title: '添加公告'})
 		},
 
 		
@@ -330,7 +334,7 @@ export default {
 		 * 编辑公告
 		 */
 		edit(dataObj) {
-			layer.open({
+			/* layer.open({
 				type: 1,
 				title: '编辑公告',	
 				area: ['780px', '430px'],
@@ -367,7 +371,9 @@ export default {
 						}
 					})
 				}
-			})
+            }) */
+            window.__acticle_data = Object.assign(dataObj, {flag: '2'});
+			this.$cm_m.ueditor({callBack: this.request_data, title: '编辑公告'})
 		},
 
 		/**

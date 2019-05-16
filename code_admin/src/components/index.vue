@@ -1,42 +1,54 @@
 <template>
     <div id="index_container">
         <el-row :gutter="15">
-            <el-col :span="6">
+            <el-col :span="12">
                 <div class="module">
                     <div class="module-title">
                         <span class="vertical-lines"></span>
-                        <span class="title-text">今日数据统计</span>
+                        <span class="title-text">我的团数据统计</span>
                     </div>
                     <div class="module-content">
                         <ul class="module-content-list">
                             <li>
                                 <div>
                                     <p>今日总订单</p>
-                                    <h1>{{ pandectData.today_order_money }}</h1>
+                                    <h1>{{ pandectData.my_today_order_money }}</h1>
                                 </div>
-                                <div>
-                                    <p>昨日总订单</p>
-                                    <h1>{{ pandectData.yesterday_order_money }}</h1>
-                                </div>
-                            </li>
-                            <li>
+
                                 <div>
                                     <p>今日总单数</p>
-                                    <h1>{{ pandectData.today_order_sum }}</h1>
+                                    <h1>{{ pandectData.my_today_order_sum }}</h1>
                                 </div>
+
                                 <div>
-                                    <p>昨日总单数</p>
-                                    <h1>{{ pandectData.yesterday_order_sum }}</h1>
+                                    <p>今日利润</p>
+                                    <h1>{{ pandectData.my_today_order_profit }}</h1>
+                                </div>
+
+                                <div>
+                                    <p>团队人数</p>
+                                    <h1>{{ pandectData.my_all_number }}</h1>
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    <p>今日利润</p>
-                                    <h1>{{ pandectData.today_order_profit }}</h1>
+                                    <p>昨日总订单</p>
+                                    <h1>{{ pandectData.my_yesterday_order_money }}</h1>
                                 </div>
+
+                                <div>
+                                    <p>昨日总单数</p>
+                                    <h1>{{ pandectData.my_yesterday_order_sum }}</h1>
+                                </div>
+
                                 <div>
                                     <p>昨日利润</p>
-                                    <h1>{{ pandectData.yesterday_order_profit }}</h1>
+                                    <h1>{{ pandectData.my_yesterday_order_profit }}</h1>
+                                </div>
+
+                                <div>
+                                    <p>可用人数</p>
+                                    <h1>{{ pandectData.my_usable_number }}</h1>
                                 </div>
                             </li>
                         </ul>
@@ -47,80 +59,50 @@
                 <div class="module">
                     <div class="module-title">
                         <span class="vertical-lines"></span>
-                        <span class="title-text">今日数据统计</span>
+                        <span class="title-text">下级团数据统计</span>
                     </div>
                     <div class="module-content">
                         <ul class="module-content-list">
                             <li>
-                                <div class="data1">
-                                    <p>我的钱包</p>
-                                    <h1>{{ pandectData.wallet }}</h1>
+                                <div>
+                                    <p>今日总订单</p>
+                                    <h1>{{ pandectData.sub_today_order_money }}</h1>
                                 </div>
-                                <div class="data2">
-                                    <p>与昨日数量比</p>
-                                    <h1>5%</h1>
+
+                                <div>
+                                    <p>今日总单数</p>
+                                    <h1>{{ pandectData.sub_today_order_sum }}</h1>
+                                </div>
+
+                                <div>
+                                    <p>今日利润</p>
+                                    <h1>{{ pandectData.sub_today_order_profit }}</h1>
+                                </div>
+
+                                <div>
+                                    <p>团队人数</p>
+                                    <h1>{{ pandectData.sub_all_number }}</h1>
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    <p>直属团长</p>
-                                    <h1>{{ pandectData.leader }}个</h1>
+                                    <p>昨日总订单</p>
+                                    <h1>{{ pandectData.sub_yesterday_order_money }}</h1>
                                 </div>
+
                                 <div>
-                                    <p>直属子团长</p>
-                                    <h1>{{ pandectData.secondary }}个</h1>
+                                    <p>昨日总单数</p>
+                                    <h1>{{ pandectData.sub_yesterday_order_sum }}</h1>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="data1">
-                                    <p>今日下单商户数</p>
-                                    <h1>2</h1>
+
+                                <div>
+                                    <p>昨日利润</p>
+                                    <h1>{{ pandectData.sub_yesterday_order_profit }}</h1>
                                 </div>
-                                <div class="data2">
-                                    <p>与昨日数量相比</p>
-                                    <h1>5%</h1>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </el-col>
-            <el-col :span="6">
-                <div class="module">
-                    <div class="module-title">
-                        <span class="vertical-lines"></span>
-                        <span class="title-text">出单时段统计</span>
-                    </div>
-                    <div class="module-content">
-                        <ul class="module-content-list">
-                            <li>
-                                <div class="data1">
-                                    <p>今日订单总金额</p>
-                                    <h1>2</h1>
-                                </div>
-                                <div class="data2">
-                                    <p>与昨日金额比</p>
-                                    <h1>5%</h1>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="data1">
-                                    <p>今日下单商户数</p>
-                                    <h1>2</h1>
-                                </div>
-                                <div class="data2">
-                                    <p>与昨日数量相比</p>
-                                    <h1>5%</h1>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="data1">
-                                    <p>平台拥有总商户数</p>
-                                    <h1>2564</h1>
-                                </div>
-                                <div class="data2">
-                                    <p>昨日总商户数</p>
-                                    <h1>2500</h1>
+
+                                <div>
+                                    <p>可用人数</p>
+                                    <h1>{{ pandectData.sub_usable_number }}</h1>
                                 </div>
                             </li>
                         </ul>
@@ -128,21 +110,63 @@
                 </div>
             </el-col>
         </el-row>
+
+        <div class="module one-line" style="margin-top: 20px;">
+            <div class="module-title">
+                <span class="vertical-lines"></span>
+                <span class="title-text">团长可用额度</span>
+            </div>
+            <div class="module-content scroll">
+                <ul class="module-content-list">
+                    <li>
+                        <div class="data1" v-for="(item, index) in leaderData" :key="index">
+                            <p>团长：{{ item.cp_account }}</p>
+                            <h1>￥{{ item.gather_amount_limit }}</h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="module special">
             <div class="module-title">
                 <span class="vertical-lines"></span>
                 <span class="title-text">APP下载</span>
             </div>
             <div class="module-content">
-                <el-row :gutter="15" class="qrcode_container">
-                    <el-col :span="8" v-for="(item, index) in qrcodeArr" :key="index" >
+                <el-row :gutter="15" class="qrcode_container" v-if="Object.keys(downloadData).length > 0">
+					<el-col :span="8">
                         <el-card shadow="never" :body-style="elCardStyle">
                             <img
-                                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                :src="downloadData.ios.config_value"
                                 class="image"
                             >
                             <div style="padding: 14px;">
-                                <span>{{ item.text }}</span>
+                                <span>{{ downloadData.ios.config_desc }}</span>
+                            </div>
+                        </el-card>
+                    </el-col>
+
+                    <el-col :span="8">
+                        <el-card shadow="never" :body-style="elCardStyle">
+                            <img
+                                :src="downloadData.android.config_value"
+                                class="image"
+                            >
+                            <div style="padding: 14px;">
+                                <span>{{ downloadData.android.config_desc }}</span>
+                            </div>
+                        </el-card>
+                    </el-col>
+                    
+                    <el-col :span="8">
+                        <el-card shadow="never" :body-style="elCardStyle">
+                            <img
+                                :src="downloadData.app.config_value"
+                                class="image"
+                            >
+                            <div style="padding: 14px;">
+                                <span>{{ downloadData.app.config_desc }}</span>
                             </div>
                         </el-card>
                     </el-col>
@@ -156,31 +180,31 @@
 export default {
     data() {
         return {
-            qrcodeArr: [
-                {
-                    text: '苹果'
-                },
-                {
-                    text: '安卓'
-                },
-                {
-                    text: '手机网页'
-                },
-            ],
-            elCardStyle: { 
-                padding: '0px',
-                'text-align': 'center',
+            elCardStyle: {
+                padding: "0px",
+                "text-align": "center",
+                "font-size": "16px",
+                color: "rgb(30, 159, 255)"
             },
+            leaderData: [],
             pandectData: {},
-            dataList: {} // 个人数据
+            dataList: {}, // 个人数据
+
+            downloadData: {}
         };
     },
     created() {
-        this.getPandect();
         // this.requestInfo();
+        this.init();
+        this.getAppDownload();
     },
     mounted() {},
     methods: {
+        init() {
+            this.getPandect();
+            this.getLeaderLimit();
+        },
+
         /**
          * 获取个人信息
          */
@@ -191,11 +215,43 @@ export default {
         },
 
         /**
+         * 获取app下载的数据
+         */
+        getAppDownload() {
+            this.$axios.post("Team_Data/app_images_url").then(data => {
+                if (data.status === "error") return;
+
+                const simple_key = {
+                    codeadmin_android_images_url: "android",
+                    codeadmin_app_images_url: "app",
+                    codeadmin_ios_images_url: "ios"
+                };
+
+                let __downloadData = {};
+
+                for (const [keys, values] of Object.entries(data.dataList)) {
+                    __downloadData[simple_key[keys]] = values;
+                }
+
+                this.downloadData = __downloadData;
+            });
+        },
+
+        /**
+         * 获取团长可用额度
+         */
+        getLeaderLimit() {
+            this.$axios.post("Team_Data/leader").then(data => {
+                if (data.status === "error") return;
+                this.leaderData = data.dataList.list;
+            });
+        },
+
+        /**
          * 获取总览数据
          */
         getPandect() {
             this.$axios.post("Team_Data/team_data").then(data => {
-                console.log(data);
                 if (data.status != "OK") return;
                 this.pandectData = data.dataList;
             });

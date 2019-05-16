@@ -52,7 +52,7 @@
 								<th>昵称</th>
 								<th>类型</th>
 								<th>时间</th>
-								<th>变动</th>
+								<th class="f_bold">金额</th>
 							</tr>
 						</thead>
 						<tbody v-if="dataList.list" v-show="dataList.list.length > 0">
@@ -61,7 +61,7 @@
 								<td v-text="item.cp_nickname"></td>
 								<td v-text="item.pay_mode"></td>
 								<td v-text="item.change_time"></td>
-								<td :class="+item.change_money > 0 ? 'green' : 'red'" v-text="+item.change_money > 0 ? `+${item.change_money}` : item.change_money"></td>
+								<td class="f_bold" :class="+item.change_money > 0 ? 'green' : 'red'" v-text="+item.change_money > 0 ? `+${item.change_money}` : item.change_money"></td>
 							</tr>
 						</tbody>
 
@@ -69,7 +69,7 @@
 							<tr class="no_data">
 								<td colspan="99">
 									<img src="../../assets/images/icon/nodate.png">
-									<p>暂时没有账户明细列表！</p>
+									<p>您的团暂时没有充值记录！</p>
 								</td>
 							</tr>
 						</tbody>

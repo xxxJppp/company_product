@@ -167,12 +167,12 @@ class base_data {
 				1: '取消店员通知',
 			},
 			wechat_status: {
-				0: '未处理',
-				1: '已处理'
+				0: '正常',
+				1: '禁用'
 			},
 			wechat_status_color: {
-				0: 'red',
-				1: 'green'
+				0: 'green',
+				1: 'red'
 			},
 			bill_change: {
 				0: '未知',
@@ -206,6 +206,32 @@ class base_data {
 			withdraw_mode: {
 				0: '手动',
 				1: '自动',
+			},
+			clerk_status: {
+				0: '未分配',
+				1: '等待分配',
+				2: '已分配',
+			},
+			clerk_status_c: {
+				0: 'red',
+				1: '',
+				2: 'green',
+			},
+			billchange_status: {
+				0: '正常',
+				1: '隐藏',
+			},
+			billchange_status_c: {
+				0: 'green',
+				1: 'red',
+			},
+			notice_status: {
+				0: '正常',
+				1: '隐藏',
+			},
+			notice_status_c: {
+				0: 'green',
+				1: 'red',
 			},
 		}
 	}

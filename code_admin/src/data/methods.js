@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { mapGetters } from 'vuex'
-
 export default class Methods {
 	constructor(Vue) {
 		this.Vue = Vue;

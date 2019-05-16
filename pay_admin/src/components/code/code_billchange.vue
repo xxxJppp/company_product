@@ -73,6 +73,8 @@
 						<th>商户订单号</th>
 						<th>支付方式</th>
 						<th>详情</th>
+						<th>状态</th>
+						<th class="control_T">操作</th>
 					</tr>
 				</thead>
 
@@ -99,6 +101,11 @@
 							<span v-if="item.change_type === 1" class="_info cp" @click="lookOrder({mch_order_number: item.mch_order_number, prompt: true}, item.operate_account)">详情</span>
 							<span v-if="item.change_type === 2 || item.change_type === 3" class="_info cp" @click="lookCash(item)">详情</span>
 						</td>
+						<td :class="$cm_d.tg['billchange_status_c'][item.status]">{{ $cm_d.tg['billchange_status'][item.status] }}</td>
+						<td class="control_C">
+							<span v-if="item.status == 1" class="open_btn cp ml5 " @click="show(item.id)"><i class="el-icon-check"></i>显示</span>
+							<span v-else class="close_btn cp " @click="hide(item.id)"><i class="el-icon-close"></i>隐藏</span>
+						</td>
 					</tr>
 
 					<tr v-if="dataList.page_sum">
@@ -111,12 +118,16 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 
 					<tr v-if="dataList.page_sum">
 						<td colspan="2">总计</td>
 						<td></td>
 						<td class="red f_bold">{{ dataList.total_count.change_money }}</td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -405,6 +416,44 @@
 							</div>
 						</div>
 					`
+				})
+			},
+
+			/**
+			 * 显示
+			 */
+			show(id) {
+				layer.confirm('是否要显示选中的记录？', {title: '显示', icon: 7}, layIndex => {
+					this.$axios.post('Code_Provider/money_change_edit', {
+						id,
+						status: 0
+					}).then(data => {
+						if (!data) {
+							setTimeout(() => {
+								layer.close(layIndex);
+								this.request_data();
+							}, 1500)
+						}
+					})
+				})
+			},
+
+			/**
+			 * 隐藏
+			 */
+			hide(id) {
+				layer.confirm('是否要隐藏选中的记录？', {title: '隐藏', icon: 7}, layIndex => {
+					this.$axios.post('Code_Provider/money_change_edit', {
+						id,
+						status: 1
+					}).then(data => {
+						if (!data) {
+							setTimeout(() => {
+								layer.close(layIndex);
+								this.request_data();
+							}, 1500)
+						}
+					})
 				})
 			},
 

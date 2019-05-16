@@ -1,5 +1,5 @@
 
-//window.location_url = 'http://192.168.0.27/new_api/codeadmin/admin_api/admin/';
+// window.location_url = 'http://192.168.0.27/new_api/codeadmin/admin_api/admin/';
  window.location_url = 'http://192.168.0.106:9040/admin_api/admin/';
 window.BOSH_SERVICE = 'ws://192.168.0.106:7070/ws/';
 window.suffixPath='@lottery';

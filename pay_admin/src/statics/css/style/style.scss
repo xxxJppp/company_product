@@ -498,6 +498,31 @@ input[type="radio"] {
 	}
 }
 
+
+.ueditor_container {
+	padding: 20px;
+	
+	.el-form-item {
+		margin-bottom: 10px;
+	}
+	.ele_form {
+		width: 500px;
+	}
+	.components-container {
+		padding-left: 80px;
+	}
+	.btns-container {
+		margin-left: 80px;
+		margin-top: 15px;
+	}
+    .el-form-item__label {
+        width: 100px !important;
+	}
+	.el-form-item__content {
+		margin-left: 100px !important;
+	}
+}
+
 #layer_tips_msg {
 	position: absolute;
 	z-index: 999999;

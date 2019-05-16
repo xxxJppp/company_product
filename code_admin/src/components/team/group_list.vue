@@ -132,7 +132,7 @@
 							<tr class="no_data">
 								<td colspan="99">
 									<img src="../../assets/images/icon/nodate.png">
-									<p>您暂时没有团队成员！</p>
+									<p>您暂时没有开组！</p>
 								</td>
 							</tr>
 						</tbody>

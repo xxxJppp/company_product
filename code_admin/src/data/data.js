@@ -4,6 +4,11 @@ export default class Data {
 
 		// 转换
 		this.tg = {
+			level: {
+				0: '★★★★★',
+				1: '★★★★',
+				2: '★★★',
+			},
 			has_pay: {
 				0: '未支付',
 				1: '支付成功',
@@ -72,7 +77,6 @@ export default class Data {
 				0: '未结算',
 				1: '已结算',
 			},
-
 		}
 
 

@@ -496,6 +496,35 @@ input[type="radio"]:disabled + label::before {
   background: url("../../images/icon/arrow-d-hover.png") center/100%;
 }
 
+.ueditor_container {
+  padding: 20px;
+}
+
+.ueditor_container .el-form-item {
+  margin-bottom: 10px;
+}
+
+.ueditor_container .ele_form {
+  width: 500px;
+}
+
+.ueditor_container .components-container {
+  padding-left: 80px;
+}
+
+.ueditor_container .btns-container {
+  margin-left: 80px;
+  margin-top: 15px;
+}
+
+.ueditor_container .el-form-item__label {
+  width: 100px !important;
+}
+
+.ueditor_container .el-form-item__content {
+  margin-left: 100px !important;
+}
+
 #layer_tips_msg {
   position: absolute;
   z-index: 999999;

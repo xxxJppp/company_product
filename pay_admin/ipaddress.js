@@ -3,8 +3,8 @@ if (isOnLine) {
 	window.location_url = ''
 } else {
 	// window.location_url = 'http://127.0.0.1/admin_api/admin/';
-	//window.location_url = 'http://192.168.0.27/new_api/payadmin/admin_api/admin/';
-	 window.location_url = 'http://192.168.0.106:9060/admin_api/admin/';
+	window.location_url = 'http://192.168.0.27/new_api/payadmin/admin_api/admin/';
+	//  window.location_url = 'http://192.168.0.106:9060/admin_api/admin/';
 }
 // window.Request_url = 'http://192.168.0.106:8010/'; //项目接口访问地址 php
 // window.websocket_url = '192.168.0.106:5210/'; //websocket_url访问地址	
