@@ -318,7 +318,7 @@ layui.use('layer', () => {
 					$('#conLeft').scrollTop(el.offset().top - 220);
 				}
 			}
-			$('#pAudio').html(`<audio autoplay id="audio" src="${this.getContextPath()}newChat/mp3/default.mp3"></audio>`)
+			$('#pAudio').html(`<audio autoplay id="audio" src="${this.getContextPath()}/static/newChat/mp3/default.mp3"></audio>`)
 		}
 		/**
 		 * 生成聊天模板

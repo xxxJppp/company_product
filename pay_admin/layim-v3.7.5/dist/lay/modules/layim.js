@@ -789,30 +789,32 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 				nameList = encodeURI(nameList.substring(0, nameList.length - 1));
 				layero.hide();
 
-				if(typeof isnewChat != "undefined") {
-					$('#new_line_serive', parent.document).addClass('new_chatCountclick');
-					$('#new_show_layer_tips', parent.document).addClass('show_layer_tips');
-					$('.new_chatCountclick', parent.document).unbind('click')
-					$('.new_chatCountclick', parent.document).one('click', function() {
-						layer.close(index);
-						$('#line_serive', parent.document).removeClass('new_chatCountclick')
-						$('#new_show_layer_tips', parent.document).removeClass('show_layer_tips');
-						window.open(window.top.$Res.httpRoot + '/newChat/chat1.html?avatar=' + avatarList + '&uerId=' + uerId +
-							'&nameList=' + nameList, 'window2')
-					})
-				} else {
-					$('#line_serive').addClass('chatCountclick')
-					$('#show_layer_tips').addClass('show_layer_tips');
-					$('.chatCountclick').unbind('click')
-					$('.chatCountclick').one('click', function() {
-						layer.close(index);
-						$('#line_serive').removeClass('chatCountclick')
-						$('#show_layer_tips').removeClass('show_layer_tips');
-						window.open(window.top.$Res.httpRoot + '/chat_index.html?avatar=' + avatarList + '&uerId=' + uerId +
-							'&nameList=' + nameList, 'window1')
-					})
+				var charWIndow=getCookieValue('charWIndow');
+				if(charWIndow!='open'){
+					if(typeof isnewChat != "undefined") {
+						$('#new_line_serive', parent.document).addClass('new_chatCountclick');
+						$('#new_show_layer_tips', parent.document).addClass('show_layer_tips');
+						$('.new_chatCountclick', parent.document).unbind('click')
+						$('.new_chatCountclick', parent.document).one('click', function() {
+							layer.close(index);
+							$('#line_serive', parent.document).removeClass('new_chatCountclick')
+							$('#new_show_layer_tips', parent.document).removeClass('show_layer_tips');
+							window.open(window.top.$Res.httpRoot + '/newChat/chat1.html?avatar=' + avatarList + '&uerId=' + uerId +
+								'&nameList=' + nameList, 'window2')
+						})
+					} else {
+						$('#line_serive').addClass('chatCountclick')
+						$('#show_layer_tips').addClass('show_layer_tips');
+						$('.chatCountclick').unbind('click')
+						$('.chatCountclick').one('click', function() {
+							layer.close(index);
+							$('#line_serive').removeClass('chatCountclick')
+							$('#show_layer_tips').removeClass('show_layer_tips');
+							window.open(window.top.$Res.httpRoot + '/chat_index.html?avatar=' + avatarList + '&uerId=' + uerId +
+								'&nameList=' + nameList, 'window1')
+						})
+					}
 				}
-
 				if(!newMsg) layimMin = layero;
 
 				if(base.minRight) {
@@ -1063,13 +1065,29 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports) {
 			};
 		}
 	};
-
+	/**
+	 * 获取cook中指定参数的值
+	 */
+var 	getCookieValue=function(name) {
+		var strCookie = document.cookie;
+		var arrCookie = strCookie.split(";");
+		for (var i = 0; i < arrCookie.length; i++) {
+			var c = arrCookie[i].split("=");
+			if (c[0].replace(/(^\s*)|(\s*$)/g, "") == name) {
+				return c[1];
+			}
+		}
+		return null;
+	}
 	//消息声音提醒
 	var voice = function() {
 		if(device.ie && device.ie < 9) return;
 		var audio = document.createElement("audio");
 		audio.src = layui.cache.dir + 'css/modules/layim/voice/' + cache.base.voice;
-		audio.play();
+		var charWIndow=getCookieValue('charWIndow');
+		if(charWIndow!='open'){
+			audio.play();
+		}
 	};
 
 	//接受消息
